@@ -15,6 +15,14 @@ app.secret_key = b'HO\xf8\xff+\n\x1e\\~/;}'
 
 # -- Routes section --
 @app.route('/')
-@app.route('/index')
-def index():
-    return render_template('index.html')
+#@app.route('/index')
+#def index():
+    #session ["name"] = "Anjali"
+    #return render_template('index.html')
+@app.route("/random")
+def jeopardy_random():
+    response = requests.get('http://jservice.io/api/random').json()
+    data = {
+        "response": response
+    }
+    return render_template('random_clue.html', data = data)
